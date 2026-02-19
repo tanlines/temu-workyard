@@ -20,7 +20,7 @@ function MainContent() {
     <div className={cn("bg-teal", "h-screen w-full")}>
       <div
         className={cn(
-          "flex inset-0 flex-end absolute justify-center top-40 left-0",
+          "flex inset-0 flex-end absolute justify-center top-40 left-0 bg-teal",
           "w-full h-full z-0",
         )}
       >
@@ -71,7 +71,7 @@ function MainContent() {
                 )}
               >
                 <span className="flex flex-row items-center justify-center gap-2 text-dark-slate-blue">
-                  View Github <ExternalLinkIcon className="size-6" />
+                  View Github <ExternalLinkIcon className="size-5 xl:size-6" />
                 </span>
               </button>
             </a>
@@ -79,11 +79,11 @@ function MainContent() {
             <div className={cn("flex flex-col gap-2", "px-2 py-4")}>
               <div className="flex flex-row">
                 {[...Array(5)].map((_, idx) => (
-                  <StarIcon key={idx} className="size-6 text-yellow-500" />
+                  <StarIcon key={idx} className="size-5 xl:size-6 text-yellow-500" />
                 ))}
               </div>
 
-              <p className={cn("text-white font-medium", "text-sm")}>
+              <p className={cn("text-white font-medium", "text-xs xl:text-sm")}>
                 Trusted by 0+ workers
               </p>
             </div>
@@ -198,13 +198,13 @@ function NavItem({
         "hover:text-turquoise transition-all duration-300 group",
       )}
     >
-      <a href="/" className={cn(orientation === "vertical" ? "text-base md:text-xl" : "text-xs md:text-sm")}>
+      <a href="/" className={cn(orientation === "vertical" ? "text-base lg:text-xl" : "text-xs xl:text-xs 2xl:text-base")}>
         {title}
       </a>
       {chevron ? (
         <ChevronDownIcon
           className={cn(
-            "size-4 ml-2 mr-4 md:size-5",
+            "size-4 ml-2 mr-4 lg:size-5",
             "group-hover:rotate-180 transition-all duration-300",
           )}
         />
