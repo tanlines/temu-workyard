@@ -12,5 +12,5 @@ This project is a **design clone** of the [Workyard](https://workyard.com) websi
 
 ## Tech stack
 
-- React + TypeScript + Vite  
+- React + TypeScript + Vite
 - See the sections below for template-specific notes (ESLint, React Compiler, etc.).

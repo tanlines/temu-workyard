@@ -1,9 +1,5 @@
 import "./App.css";
-import {
-  ChevronDownIcon,
-  ExternalLinkIcon,
-  StarIcon,
-} from "lucide-react";
+import { ChevronDownIcon, ExternalLinkIcon, StarIcon } from "lucide-react";
 import homeHeaderImage from "./assets/home-header-img.avif";
 import accentHeaderImage from "./assets/accent-header.svg";
 import { cn } from "./lib/utils";
@@ -53,7 +49,11 @@ function MainContent() {
             compliance. <br /> Get started in minutes with Workyard.
           </p>
           <div className={cn("flex flex-row gap-2 items-center")}>
-          <a href="https://github.com/tanlines/temu-workyard" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/tanlines/temu-workyard"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button
                 className={cn(
                   "flex-[1 1 auto] rounded-md",
@@ -61,7 +61,7 @@ function MainContent() {
                   "text-2xl h-18 w-40 lg:w-60",
                   "hover:translate-y-1 hover:shadow-xl shadow-lg",
                   "transition-all duration-300",
-                  "cursor-pointer"
+                  "cursor-pointer",
                 )}
               >
                 <span className="flex flex-row items-center justify-center gap-2">
@@ -69,6 +69,18 @@ function MainContent() {
                 </span>
               </button>
             </a>
+
+            <div className={cn("flex flex-col gap-2", "px-2 py-4")}>
+              <div className="flex flex-row">
+                {[...Array(5)].map((_, idx) => (
+                  <StarIcon key={idx} className="size-6 text-yellow-500" />
+                ))}
+              </div>
+
+              <p className={cn("text-white font-medium", "text-sm")}>
+                Trusted by 0+ workers
+              </p>
+            </div>
           </div>
         </div>
         <div className={cn("w-3xl z-2", "p-4")}>
