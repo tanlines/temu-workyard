@@ -64,13 +64,13 @@ function MainContent() {
                 className={cn(
                   "flex-[1 1 auto] rounded-md",
                   "bg-turquoise hover:bg-turquoise text-black font-semibold",
-                  "text-2xl h-18 w-40 lg:w-60",
+                  "text-xl lg:text-2xl h-18 w-50 lg:w-60",
                   "hover:translate-y-1 hover:shadow-xl shadow-lg",
                   "transition-all duration-300",
                   "cursor-pointer",
                 )}
               >
-                <span className="flex flex-row items-center justify-center gap-2">
+                <span className="flex flex-row items-center justify-center gap-2 text-dark-slate-blue">
                   View Github <ExternalLinkIcon className="size-6" />
                 </span>
               </button>
