@@ -1,9 +1,10 @@
 import "./App.css";
-import { ChevronDownIcon, ExternalLinkIcon, StarIcon } from "lucide-react";
+import { ChevronDownIcon, ExternalLinkIcon, MenuIcon, PhoneIcon, StarIcon } from "lucide-react";
 import homeHeaderImage from "./assets/home-header-img.avif";
 import accentHeaderImage from "./assets/accent-header.svg";
 import { cn } from "./lib/utils";
 import { WorkyardSvg } from "./components/WorkyardSvg";
+import { useState } from "react";
 
 export default function App() {
   return (
@@ -31,15 +32,20 @@ function MainContent() {
       </div>
       <div
         className={cn(
-          "flex flex-row items-center justify-between gap-4",
+          "flex flex-col items-center justify-between gap-4",
           "max-w-7xl m-auto px-5 pt-20 z-10",
+          "lg:flex-row"
         )}
       >
-        <div className={cn("flex flex-col gap-4", "w-3xl z-2 p-4")}>
+        <div className={cn("flex flex-col gap-4", 
+        "w-full z-2 p-4",
+        "lg:w-3xl"
+
+        )}>
           <h1
             className={cn(
               "text-white font-bold leading-16",
-              "text-xl xs:text-2xl md:text-5xl",
+              "text-xl xs:text-2xl md:text-3xl lg:text-5xl max-w-2xl",
             )}
           >
             Workforce management built for the field
@@ -83,7 +89,7 @@ function MainContent() {
             </div>
           </div>
         </div>
-        <div className={cn("w-3xl z-2", "p-4")}>
+        <div className={cn("w-full z-2", "p-4", "md:w-3xl")}>
           <img src={homeHeaderImage} alt="Workyard" />
         </div>
       </div>
@@ -92,6 +98,7 @@ function MainContent() {
 }
 
 function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div
       className={cn("flex justify-center", "bg-teal h-18 w-full font-medium")}
@@ -104,9 +111,9 @@ function Navigation() {
       >
         <nav className="flex justify-center items-center">
           <WorkyardSvg
-            className={cn("w-3/12 min-w-20 max-w-40", "text-white mr-8")}
+            className={cn("w-3/12 min-w-30 max-w-40", "text-white mr-8")}
           />
-          <ul className={cn("flex flex-row", "text-white")}>
+          <ul className={cn("flex flex-row", "text-white", "hidden lg:flex")}>
             <NavItem title="Product" />
             <NavItem title="Solutions" />
             <NavItem title="Integrations" chevron={false} />
@@ -115,22 +122,42 @@ function Navigation() {
             <NavItem title="Resources" />
           </ul>
         </nav>
+        <div className={cn("bg-teal h-full w-full -z-10", 
+        isMenuOpen ? "translate-y-0" : "-translate-y-1000",
+        "transition-all duration-300",
+        "lg:hidden fixed top-0 left-0 right-0 bottom-0"
+        )}>
+          <div className="w-[90%] m-auto max-w-3xl pt-20">
+            <nav className="lg:hidden">
+              <ul className={cn("flex flex-col items-start gap-5", "text-white")}>
+                <NavItem title="Product" orientation="vertical" />
+                <NavItem title="Solutions" orientation="vertical" />
+                <NavItem title="Integrations" chevron={false} orientation="vertical" />
+                <NavItem title="Pricing" chevron={false} orientation="vertical" />
+                <NavItem title="Reviews" chevron={false} orientation="vertical" />
+                <NavItem title="Resources" orientation="vertical" />
+              </ul>
+            </nav>
+          </div>
+        </div>
         <div className={cn("flex flex-row items-center justify-center gap-2")}>
           <a
             href="/"
             className={cn(
               "text-white hover:text-turquoise",
-              "text-sm pr-4",
+              "text-sm pr-4 text-nowrap",
               "transition-all duration-300",
+              "hidden lg:block"
             )}
           >
             Contact sales
           </a>
+          <PhoneIcon className="size-6 text-white lg:hidden" />
           <button
             className={cn(
               "flex-[1 1 auto] rounded-md",
               "bg-turquoise hover:bg-turquoise text-black font-semibold",
-              "text-sm h-12 w-18 md:w-24 lg:w-36",
+              "text-sm h-12 w-18 md:w-18 lg:w-36",
               "hover:translate-y-1 shadow-lg",
               "transition-all duration-300",
             )}
@@ -139,14 +166,16 @@ function Navigation() {
           </button>
           <button
             className={cn(
-              "rounded-md font-semibold text-sm h-11 w-18",
+              "rounded-md font-semibold text-sm h-12 w-18",
               "bg-[#cafffa] hover:bg-[#0fffe6] text-teal hover:text-black",
               "hover:translate-y-1",
               "transition-all duration-300",
+              "hidden lg:block"
             )}
           >
             Login
           </button>
+          <MenuIcon className="cursor-pointer size-6 text-white lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
       </div>
     </div>
@@ -156,18 +185,20 @@ function Navigation() {
 function NavItem({
   title,
   chevron = true,
+  orientation = "horizontal",
 }: {
   title: string;
   chevron?: boolean;
+  orientation?: "horizontal" | "vertical";
 }) {
   return (
     <li
       className={cn(
-        "flex flex-row items-center gap text-[2px]",
+        "flex flex-row items-center gap",
         "hover:text-turquoise transition-all duration-300 group",
       )}
     >
-      <a href="/" className={cn("text-xs", "md:text-sm")}>
+      <a href="/" className={cn(orientation === "vertical" ? "text-base md:text-xl" : "text-xs md:text-sm")}>
         {title}
       </a>
       {chevron ? (
